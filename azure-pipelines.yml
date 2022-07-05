@@ -29,12 +29,10 @@ stages:
     pool:
        default
     steps:
-    - task: Docker@2
-      displayName: Build and push an image to container registry
+    - task: DockerCompose@0
       inputs:
-        command: buildAndPush
-        repository: $(imageRepository)
-        dockerfile: $(dockerfilePath)
-        containerRegistry: $(dockerRegistryServiceConnection)
-        tags: |
-          $(tag)
+        containerregistrytype: 'Azure Container Registry'
+        azureSubscription: 'Azure Pass - Sponsorship(21354422-a8e5-494e-8bdb-e2ed0feac306)'
+        azureContainerRegistry: '{"loginServer":"bootcampapp1.azurecr.io", "id" : "/subscriptions/21354422-a8e5-494e-8bdb-e2ed0feac306/resourceGroups/ContainerRG/providers/Microsoft.ContainerRegistry/registries/bootcampapp1"}'
+        dockerComposeFile: '**/docker-compose.yml'
+        action: 'Run a Docker Compose command'
