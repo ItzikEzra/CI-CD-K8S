@@ -5,8 +5,9 @@
 trigger:
 - master
 
-pool:
-     default
+pool: default
+  vmImageName:
+        hostname
 
 resources:
 - repo: self
