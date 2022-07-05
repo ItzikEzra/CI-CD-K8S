@@ -6,7 +6,7 @@ trigger:
 - master
 
 pool:
-      vmImage: default
+     default
 
 resources:
 - repo: self
