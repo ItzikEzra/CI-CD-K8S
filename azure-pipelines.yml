@@ -34,10 +34,10 @@ stages:
           runOnce:
             deploy:
               steps:
-              
-
-
-               - task: Docker@2
-                 inputs:
-                   command: 'login'
-              
+                - task: Docker@2
+                  inputs:
+                    containerRegistry: 'bootcampapp1'
+                    command: 'login'
+                - task: CmdLine@2   
+                  inputs:
+                    script: 'docker pull bootcampapp1.azurecr.io/bootcampappdocker:48'
