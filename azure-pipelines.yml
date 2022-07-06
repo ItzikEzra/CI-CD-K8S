@@ -44,6 +44,11 @@ stages:
                   
                 - task: printAllVariables@1
 
+                - task: CmdLine@2
+                  displayName: Stop Current Container
+                  inputs:
+                   script: 'docker rm -f  bootcampappdocker || true'
+
                 - task: Bash@3
                   inputs:
                    targetType: 'inline'
