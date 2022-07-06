@@ -34,13 +34,10 @@ stages:
           runOnce:
             deploy:
               steps:
-                - task: Docker@2
-                  displayName: "Login to Registry"
-                  inputs:
-                    containerRegistry: $(dockerRegistryServiceConnection)
-                    command: "login"
+              
 
-                - task: CmdLine@2
-                  displayName: Pull image
-                  inputs:
-                    script: "docker pull $(containerRegistry)/$(imageRepository):$(tag)"
+
+               - task: Docker@2
+                 inputs:
+                   command: 'login'
+              
