@@ -38,9 +38,12 @@ stages:
                   inputs:
                     containerRegistry: 'bootcampapp1'
                     command: 'login'
+                    tags: |
+                        $(Build.BuildId)
+
                 - task: CmdLine@2   
                   inputs:
-                    script: 'docker pull bootcampapp1.azurecr.io/bootcampappdocker:48'
+                    script: 'docker pull bootcampapp1.azurecr.io/bootcampappdocker:$(Build.BuildId)'
                   
                 - task: printAllVariables@1
 
