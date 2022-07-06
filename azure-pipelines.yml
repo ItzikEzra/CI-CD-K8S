@@ -42,9 +42,12 @@ stages:
                   inputs:
                     script: 'docker pull bootcampapp1.azurecr.io/bootcampappdocker:48'
                   
-
                 - task: printAllVariables@1
 
+                - task: Bash@3
+                  inputs:
+                  targetType: 'inline'
+                  script: 'docker run --name bootcampappdocker  bootcampapp1.azurecr.io/bootcampappdocker:48'
 
                     
                     
