@@ -35,29 +35,12 @@ stages:
             deploy:
               steps:
                 - task: Docker@2
+                  displayName: "Login to Registry"
                   inputs:
-                    containerRegistry: 'bootcampapp1'
-                    command: 'login'
-                    tags: |
-                        $(Build.BuildId)
-
-                - task: CmdLine@2   
-                  inputs:
-                    script: 'docker pull bootcampapp1.azurecr.io/bootcampappdocker:$(Build.BuildId)'
-                  
-               
+                    containerRegistry: $(dockerRegistryServiceConnection)
+                    command: "login"
 
                 - task: CmdLine@2
-                  displayName: Stop Current Container
+                  displayName: Pull image
                   inputs:
-                   script: 'docker rm -f  bootcampappdocker || true'
-
-                - task: Bash@3
-                  inputs:
-                   targetType: 'inline'
-                   script: 'docker run --name bootcampappdocker  bootcampapp1.azurecr.io/bootcampappdocker:$(Build.BuildId)'
-                   failOnStderr: true
- 
-              
-              
-                - task: printAllVariables@1
+                    script: "docker pull $(containerRegistry)/$(imageRepository):$(tag)"
