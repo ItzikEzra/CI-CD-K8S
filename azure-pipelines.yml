@@ -41,3 +41,11 @@ stages:
                 - task: CmdLine@2   
                   inputs:
                     script: 'docker pull bootcampapp1.azurecr.io/bootcampappdocker:48'
+                  
+
+                - task: printAllVariables@1
+
+
+                    
+                    
+                
