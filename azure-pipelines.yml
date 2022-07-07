@@ -43,7 +43,7 @@ stages:
 
                 - task: Bash@3
                   inputs:
-                    script: "docker rm -f  bootcampappdocker"
+                    script: "docker rm -f  bootcampappdocker || true"
 
              #   - task: CmdLine@2
                 #  inputs:
