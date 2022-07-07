@@ -41,9 +41,12 @@ stages:
                     tags: |
                       $(Build.BuildId)
 
-                - task: Bash@3
+
+
+                 
+                - task: CmdLine@2
                   inputs:
-                    script: "docker rm -f  bootcampappdocker || true"
+                    script: 'docker rm -f  bootcampappdocker || true'"
 
              #   - task: CmdLine@2
                 #  inputs:
