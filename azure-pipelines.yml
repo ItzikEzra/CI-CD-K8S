@@ -36,28 +36,24 @@ stages:
               steps:
                 - task: Docker@2
                   inputs:
-                    containerRegistry: 'bootcampapp1'
-                    command: 'login'
+                    containerRegistry: "bootcampapp1"
+                    command: "login"
                     tags: |
-                        $(Build.BuildId)
+                      $(Build.BuildId)
 
-                - task: CmdLine@2   
+                - task: CmdLine@2
                   inputs:
-                    script: 'docker pull bootcampapp1.azurecr.io/bootcampappdocker:$(Build.BuildId)'
-                  
-               
+                    script: "docker pull bootcampapp1.azurecr.io/bootcampappdocker:$(Build.BuildId)"
 
                 - task: CmdLine@2
                   displayName: Stop Current Container
                   inputs:
-                   script: 'docker rm -f  bootcampappdocker || true'
+                    script: "docker rm -f  bootcampappdocker || true"
 
                 - task: Bash@3
                   inputs:
-                   targetType: 'inline'
-                   script: 'docker run --name bootcampappdocker  bootcampapp1.azurecr.io/bootcampappdocker:$(Build.BuildId)'
-                   failOnStderr: true
- 
-              
-              
+                    targetType: "inline"
+                    script: "docker run --restart=always -d --name bootcampappdocker -p 8080:8080 -e PGHOST=$(PGHOST) -e PGUSERNAME=$(PGUSERNAME) -e PGDATABASE=$(PGDATABASE) -e PGPASSWORD=$(PGPASSWORD) -e PGPORT=$(PGPORT)  -e HOST_URL=$(HOST_URL) -e COOKIE_ENCRYPT_PWD=$(COOKIE_ENCRYPT_PWD) -e NODE_ENV=development -e OKTA_ORG_URL=$(OKTA_ORG_URL) -e OKTA_CLIENT_ID=$(OKTA_CLIENT_ID) -e OKTA_CLIENT_SECRET=$(OKTA_CLIENT_SECRET) -e PORT=8080 -e HOST=0.0.0.0 bootcampapp1.azurecr.io/bootcampappdocker:$(Build.BuildId)"
+                    failOnStderr: true
+
                 - task: printAllVariables@1
