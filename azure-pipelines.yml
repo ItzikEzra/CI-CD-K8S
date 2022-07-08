@@ -36,9 +36,24 @@ stages:
           runOnce:
             deploy:
               steps:
+
+                - task: CmdLine@2
+                  inputs:
+                    script: 'sudo apt-get update'
+                - task: CmdLine@2
+                  inputs:
+                    script: 'sudo apt install azure-cli  -y'
+                - task: AzureCLI@2
+                  inputs:
+                   azureSubscription: 'Azure Pass - Sponsorship(1)(21354422-a8e5-494e-8bdb-e2ed0feac306)'
+                   scriptType: 'bash'
+                   scriptLocation: 'inlineScript'
+                   inlineScript: 'az acr login --name bootcampapp1'
+                
                 - task: Docker@2
                   inputs:
                     containerRegistry: "bootcampapp1"
+
                     command: "login"
                     tags: |
                       $(Build.BuildId)
