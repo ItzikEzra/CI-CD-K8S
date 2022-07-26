@@ -7,7 +7,7 @@
 Regarding the architecture of our solution we will keep the same infrastrucutre but this time we will run the application as a container:</p>
 
 <h2>How the project look in high level?</h2>
-<a href="https://ibb.co/hy2D3hR"><img src="https://i.ibb.co/drkG810/141464435-f83b4376-b5f3-4359-91d8-e8542bba40bf.png" alt="141464435-f83b4376-b5f3-4359-91d8-e8542bba40bf" border="0"></a><br /><a target='_blank' href='https://imgbb.com/'>free image sharing</a><br />
+<a href="https://ibb.co/hy2D3hR"><img src="https://i.ibb.co/drkG810/141464435-f83b4376-b5f3-4359-91d8-e8542bba40bf.png" alt="141464435-f83b4376-b5f3-4359-91d8-e8542bba40bf" border="0" /></a>
 
 <h2>VMs Requirements</h2>
 1)VMagent machine for CI process </br>
