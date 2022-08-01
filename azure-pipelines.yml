@@ -22,9 +22,7 @@ stages:
               Dockerfile: '**/Dockerfile'
         
   - stage: DeployToStaging
-    condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/master'))
-    dependsOn: Build
-
+    
     jobs:
     - deployment: Deploy
       displayName: Deploy
