@@ -34,6 +34,7 @@ stages:
         runOnce:
           deploy:
             steps:
+            - task: printAllVariables@1
             - task: KubernetesManifest@0
               inputs:
                 action: 'createSecret'
