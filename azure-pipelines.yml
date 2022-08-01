@@ -2,7 +2,7 @@ name: CICD pipeline
 
 trigger:
   - master
-  - feature*
+  - feature/*
 
 pool: default
 
@@ -16,98 +16,9 @@ stages:
         steps:
           - task: Docker@2
             inputs:
-              containerRegistry: "bootcampapp1"
-              repository: "BootcampappDocker"
-              command: "buildAndPush"
-              Dockerfile: "**/Dockerfile"
-
-  # Continuous Deployment Process for Staging Environment
-  - stage: DeployToStaging
-    condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/master'))
-    variables:
-      - group: staging
-    jobs:
-      - deployment: staging
-        displayName: Deploy to Staging
-        environment:
-          name: staging
-          resourceType: VirtualMachine
-        strategy:
-          runOnce:
-            deploy:
-              steps:
-                - task: CmdLine@2
-                  inputs:
-                    script: "sudo apt-get update"
-                - task: CmdLine@2
-                  inputs:
-                    script: "sudo apt install azure-cli  -y"
-                - task: AzureCLI@2
-                  inputs:
-                    azureSubscription: "Azure Pass - Sponsorship(1)(21354422-a8e5-494e-8bdb-e2ed0feac306)"
-                    scriptType: "bash"
-                    scriptLocation: "inlineScript"
-                    inlineScript: "az acr login --name bootcampapp1"
-
-                - task: Docker@2
-                  inputs:
-                    containerRegistry: "bootcampapp1"
-
-                    command: "login"
-                    tags: |
-                      $(Build.BuildId)
-
-                - task: CmdLine@2
-                  inputs:
-                    script: "docker rm -f  bootcampappdocker || true"
-
-                - task: CmdLine@2
-                  inputs:
-                    script: "docker run --restart=always -d --name bootcampappdocker -p 8080:8080 -e PGHOST=$(PGHOST) -e PGUSERNAME=$(PGUSERNAME) -e PGDATABASE=$(PGDATABASE) -e PGPASSWORD=$(PGPASSWORD) -e PGPORT=$(PGPORT)  -e HOST_URL=$(HOST_URL) -e COOKIE_ENCRYPT_PWD=$(COOKIE_ENCRYPT_PWD) -e NODE_ENV=development -e OKTA_ORG_URL=$(OKTA_ORG_URL) -e OKTA_CLIENT_ID=$(OKTA_CLIENT_ID) -e OKTA_CLIENT_SECRET=$(OKTA_CLIENT_SECRET) -e PORT=8080 -e HOST=0.0.0.0 bootcampapp1.azurecr.io/bootcampappdocker:$(Build.BuildId)"
-
-                - task: printAllVariables@1
-
-  - stage: DeployToProduction
-    condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/master'))
-    variables:
-      - group: production
-    jobs:
-      - deployment: production
-        displayName: Deploy to production
-        environment:
-          name: production
-          resourceType: VirtualMachine
-        strategy:
-          runOnce:
-            deploy:
-              steps:
-                - task: CmdLine@2
-                  inputs:
-                    script: "sudo apt-get update"
-                - task: CmdLine@2
-                  inputs:
-                    script: "sudo apt install azure-cli  -y"
-                - task: AzureCLI@2
-                  inputs:
-                    azureSubscription: "Azure Pass - Sponsorship(1)(21354422-a8e5-494e-8bdb-e2ed0feac306)"
-                    scriptType: "bash"
-                    scriptLocation: "inlineScript"
-                    inlineScript: "az acr login --name bootcampapp1"
-
-                - task: Docker@2
-                  inputs:
-                    containerRegistry: "bootcampapp1"
-
-                    command: "login"
-                    tags: |
-                      $(Build.BuildId)
-
-                - task: CmdLine@2
-                  inputs:
-                    script: "docker rm -f  bootcampappdocker || true"
-
-                - task: CmdLine@2
-                  inputs:
-                    script: "docker run --restart=always -d --name bootcampappdocker -p 8080:8080 -e PGHOST=$(PGHOST) -e PGUSERNAME=$(PGUSERNAME) -e PGDATABASE=$(PGDATABASE) -e PGPASSWORD=$(PGPASSWORD) -e PGPORT=$(PGPORT)  -e HOST_URL=$(HOST_URL) -e COOKIE_ENCRYPT_PWD=$(COOKIE_ENCRYPT_PWD) -e NODE_ENV=development -e OKTA_ORG_URL=$(OKTA_ORG_URL) -e OKTA_CLIENT_ID=$(OKTA_CLIENT_ID) -e OKTA_CLIENT_SECRET=$(OKTA_CLIENT_SECRET) -e PORT=8080 -e HOST=0.0.0.0 bootcampapp1.azurecr.io/bootcampappdocker:$(Build.BuildId)"
-
-                - task: printAllVariables@1
+              containerRegistry: 'bootcampapp2'
+              repository: 'bootcampapp'
+              command: 'buildAndPush'
+              Dockerfile: '**/Dockerfile'
+            
+          
