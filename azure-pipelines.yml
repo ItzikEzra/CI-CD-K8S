@@ -47,9 +47,9 @@ stages:
                 action: 'deploy'
                 kubernetesServiceConnection: 'staging-StagingKubernetesCluster-default-1659387810057'
                 manifests: |
-                             $(Pipeline.Workspace)/manifests/deployment.yml 
-                             $(Pipeline.Workspace)/manifests/service.yml
-                             $(Pipeline.Workspace)/manifests/ingress.yml
+                             $(system.defaultworkingdirectory)/manifests/deployment.yml 
+                             $(system.defaultworkingdirectory)/manifests/service.yml
+                             $(system.defaultworkingdirectory)/manifests/ingress.yml
                 
                 containers: '$(containerRegistry)/$(imageRepository):$(tag)'
                 imagePullSecrets: 'imagePullSecret'
