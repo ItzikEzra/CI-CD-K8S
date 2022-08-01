@@ -1,0 +1,23 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: bootcampapp 
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: bootcampapp
+  template:
+    metadata:
+      labels:
+        app: bootcampapp 
+    spec:
+      containers:
+        - name: webappbootcamp
+          imagePullPolicy: "Always" 
+          image: bootcampapp2.azurecr.io/bootcampapp
+          ports:
+          - containerPort: 8080
+          envFrom:
+          - secretRef:
+             name: secret.yml
