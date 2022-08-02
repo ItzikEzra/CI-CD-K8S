@@ -48,8 +48,9 @@ stages:
                 action: 'createSecret'
                 kubernetesServiceConnection: 'staging-StagingKubernetesCluster-default-1659387810057'
                 secretType: 'dockerRegistry'
-                secretName: 'containerRegistrySecrets.yml'
+                secretName: 'containerregistrySecrets129.yml'
                 dockerRegistryEndpoint: 'bootcampapp2'
+              
             - task: KubernetesManifest@0
               inputs:
                 action: 'deploy'
