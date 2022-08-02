@@ -63,6 +63,14 @@ stages:
               command: 
               secretType: 'dockerRegistry'
               containerRegistryType: 'Azure Container Registry'
+          - task: Kubernetes@1
+            inputs:
+              connectionType: 'Kubernetes Service Connection'
+              kubernetesServiceEndpoint: 'Cluster'
+              namespace: 'defaukt'
+              command: 
+              secretType: 'dockerRegistry'
+              containerRegistryType: 'Azure Container Registry'
           - task: KubernetesManifest@0
             displayName: Create imagePullSecret
             inputs:
