@@ -54,6 +54,15 @@ stages:
       runOnce:
         deploy:
           steps:
+
+          - task: Kubernetes@1
+            inputs:
+              connectionType: 'Kubernetes Service Connection'
+              kubernetesServiceEndpoint: 'staging-StagingKubernetesCluster-default-1659387810057'
+              namespace: 'default'
+              command: 
+              secretType: 'dockerRegistry'
+              containerRegistryType: 'Azure Container Registry'
           - task: KubernetesManifest@0
             displayName: Create imagePullSecret
             inputs:
