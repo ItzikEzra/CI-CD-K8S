@@ -72,7 +72,10 @@ stages:
               action: 'deploy'
               kubernetesServiceConnection: 'K8S'
               namespace: 'default'
-              manifests: 'replace'
+              manifests: |
+                 $(Pipeline.Workspace)/manifests/deployment.yml
+                 $(Pipeline.Workspace)/manifests/service.yml
+                 $(Pipeline.Workspace)/manifests/ingress.yml
           - task: KubernetesManifest@0
             displayName: Create imagePullSecret
             inputs:
