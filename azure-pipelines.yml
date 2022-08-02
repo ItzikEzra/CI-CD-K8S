@@ -46,6 +46,7 @@ stages:
             - task: KubernetesManifest@0
               inputs:
                 action: 'deploy'
+                namespace: default
                 kubernetesServiceConnection: 'staging-StagingKubernetesCluster-default-1659387810057'
                 manifests: |
                              $(system.defaultworkingdirectory)/manifests/deployment.yml 
@@ -54,4 +55,13 @@ stages:
                 
                 containers: '$(containerRegistry)/$(imageRepository):$(tag)'
                 
-              
+            - task: Kubernetes@1
+              inputs:
+                connectionType: 'Kubernetes Service Connection'
+                kubernetesServiceEndpoint: 'staging-StagingKubernetesCluster-default-1659387810057'
+                namespace: default
+                command: 'apply'
+                useConfigurationFile: true
+                configuration: 'manifests/deployment.yml'
+                secretType: 'generic'
+                secretName: 'secrets.yml'
