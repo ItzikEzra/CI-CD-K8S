@@ -1,19 +1,19 @@
 apiVersion : apps/v1
 kind: Deployment
 metadata:
-  name: sampleapp 
+  name: bootcampapp 
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: sampleapp
+      app: bootcampapp
   template:
     metadata:
       labels:
-        app: sampleapp 
+        app: bootcampapp 
     spec:
       containers:
-        - name: sampleapp 
+        - name: bootcampapp 
           image: k8sexamplesacr.azurecr.io/sampleapp
           ports:
           - containerPort: 80
