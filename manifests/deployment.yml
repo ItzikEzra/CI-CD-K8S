@@ -20,4 +20,4 @@ spec:
           - containerPort: 8080
           envFrom:
           - secretRef:
-             name: secret.yml
+             name: container-registrySecrets129.yml
