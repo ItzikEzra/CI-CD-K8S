@@ -20,9 +20,7 @@ variables:
 
   # Agent VM image name
  
-  pool: default
-
-
+pool: defaul
 stages:
 - stage: Build
   displayName: Build stage
