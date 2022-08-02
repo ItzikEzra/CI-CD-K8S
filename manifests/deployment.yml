@@ -15,7 +15,7 @@ spec:
       containers:
         - name: bootcampapp
           imagePullPolicy: "Always" 
-          image: bootcampapp2.azurecr.io/bootcampapp
+          image: bootcampapp2.azurecr.io/bootcampapp/30
           ports:
           - containerPort: 8080
           envFrom:
