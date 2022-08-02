@@ -19,7 +19,8 @@ variables:
   imagePullSecret: 'bootcampapp214567bc0-auth'
 
   # Agent VM image name
-  vmImageName: 'ubuntu-latest'
+ 
+  pool: default
 
 
 stages:
