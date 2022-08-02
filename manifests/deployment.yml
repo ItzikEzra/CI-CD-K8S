@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: bootcampapp 
-          image: k8sexamplesacr.azurecr.io/sampleapp
+          image: bootcampapp2.azurecr.io/bootcampapp
           
           ports:
           - containerPort: 80
