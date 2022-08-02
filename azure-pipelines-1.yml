@@ -63,21 +63,15 @@ stages:
               command: 
               secretType: 'dockerRegistry'
               containerRegistryType: 'Azure Container Registry'
-          - task: Kubernetes@1
-            inputs:
-              connectionType: 'Kubernetes Service Connection'
-              kubernetesServiceEndpoint: 'Cluster'
-              namespace: 'defaukt'
-              command: 
-              secretType: 'dockerRegistry'
-              containerRegistryType: 'Azure Container Registry'
+              azureSubscriptionEndpointForSecrets: 'containerRegistry'
+              azureContainerRegistry: 'bootcampapp2.azurecr.io'
+              
           - task: KubernetesManifest@0
             displayName: Create imagePullSecret
             inputs:
               action: createSecret
               secretName: $(imagePullSecret)
               dockerRegistryEndpoint: $(dockerRegistryServiceConnection)
-              kubernetesServiceConnection: staging-StagingKubernetesCluster-default-1659387810057'
           - task: KubernetesManifest@0
             displayName: Deploy to Kubernetes cluster
             inputs:
