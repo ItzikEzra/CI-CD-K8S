@@ -77,7 +77,7 @@ stages:
               action: createSecret
               secretName: $(imagePullSecret)
               dockerRegistryEndpoint: $(dockerRegistryServiceConnection)
-
+              kubernetesServiceConnection: staging-StagingKubernetesCluster-default-1659387810057'
           - task: KubernetesManifest@0
             displayName: Deploy to Kubernetes cluster
             inputs:
