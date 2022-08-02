@@ -48,8 +48,6 @@ stages:
   jobs:
   - deployment: Deploy
     displayName: Deploy
-    pool:
-   
     environment: 'staging'
     strategy:
       runOnce:
