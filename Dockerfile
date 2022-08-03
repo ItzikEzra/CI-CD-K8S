@@ -8,5 +8,5 @@ EXPOSE 80
 
 # Install dependencies
 RUN npm install 
-RUN npm initdb
+#RUN npm initdb
 CMD ["npm", "run", "dev"]
