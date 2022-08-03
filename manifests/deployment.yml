@@ -21,4 +21,4 @@ spec:
           
           envFrom:
           - secretRef:
-             name: secret.yml
+             name: secret
