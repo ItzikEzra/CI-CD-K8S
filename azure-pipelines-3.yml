@@ -28,9 +28,9 @@ stages:
       displayName: Build and push an image to container registry
       inputs:
         command: buildAndPush
-        repository: $(imageRepository)
+        repository: 'bootcamapp'
         dockerfile: $(dockerfilePath)
-        containerRegistry: $(dockerRegistryServiceConnection)
+        containerRegistry: 'bootcamapp2'
         tags: |
           $(tag)
 
@@ -70,6 +70,6 @@ stages:
                 $(Pipeline.Workspace)/manifests/service.yml
                 $(Pipeline.Workspace)/manifests/ingress.yml
               imagePullSecrets: 'secret'
-              containers: |
-                $(containerRegistry)/$(imageRepository):$(tag)
+              containers: 'bootcampapp2/bootcampapp'
+                
 
