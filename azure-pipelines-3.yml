@@ -43,6 +43,9 @@ stages:
   jobs:
   - deployment: Deploy
     displayName: Deploy
+    variables: 
+    - group: 'staging'
+
     environment: 'staging'
     strategy:
       runOnce:
