@@ -27,12 +27,11 @@ stages:
     - task: Docker@2
       displayName: Build and push an image to container registry
       inputs:
-        command: buildAndPush
+        containerRegistry: 'bootcampapp2'
         repository: 'bootcamapp'
-        dockerfile: $(dockerfilePath)
-        containerRegistry: 'bootcamapp2'
-        tags: |
-          $(tag)
+        command: 'buildAndPush'
+        Dockerfile: '**/Dockerfile'
+
 
     - upload: manifests
       artifact: manifests
