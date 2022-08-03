@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: bootcampapp 
-          image: bootcampapp2.azurecr.io/bootcampapp:151
+          image: bootcampapp2.azurecr.io/bootcampapp:153
           
           ports:
           - containerPort: 80
