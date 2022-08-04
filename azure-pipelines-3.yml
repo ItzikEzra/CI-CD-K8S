@@ -65,7 +65,7 @@ stages:
             inputs:
               targetFiles: '**/*.deployment.yml'
               encoding: 'auto'
-              tokenPattern: 'default'
+              tokenPattern: 'doublebraces'
               writeBOM: true
               actionOnMissing: 'warn'
               keepToken: false
