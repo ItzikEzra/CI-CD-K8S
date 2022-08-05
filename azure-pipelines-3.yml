@@ -93,7 +93,7 @@ stages:
   dependsOn: Build
 
   jobs:
-  - deployment: Deploy
+  - deployment: Deploy to production
     displayName: Deploy
     variables: 
     - group: 'prodcution'
