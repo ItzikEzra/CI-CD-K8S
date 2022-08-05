@@ -96,9 +96,9 @@ stages:
   - deployment: Deploy
     displayName: Deploy
     variables: 
-    - group: 'prodcution'
+    - group: 'production'
 
-    environment: 'prodcution'
+    environment: 'production'
     strategy:
       runOnce:
         deploy:
