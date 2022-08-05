@@ -1,29 +1,28 @@
-<H1>Introduction</H1>
-<p>When we built our application trought the CI/CD pipeline we didn’t package it in the best possible way. All we did was to compress the application with it’s dependencies into a zip file which allowed us to deploy the application automatically after configuring the required runtime in the target server. However, today one of the most useful and best ways to package applications are Containers because they allows us to package the application together with it dependencies and runtime in a single artifact.</p>
-
 <H1>Project Overview</H1>
-<p>This week’s project consists on writing a Dockerfile to package your NodeWeightTracker application into an image and configure a CI/CD process to automate the deployment. However this week we will raise the level a bit to achieve a CI/CD process that complies with best practices and implement the practice of Pipeline as Code.
+<p>First of all we will create a Kubernetes Cluster in Microsoft’s Azure Kubernetes Service (AKS) for the project infrastructure.</p>
+<img src="https://bootcamp.rhinops.io/images/aks-1.png"width="400" height="160" >
 
-Regarding the architecture of our solution we will keep the same infrastrucutre but this time we will run the application as a container:</p>
+<p>Once the cluster is created we are going to run our NodeWeightTracker application on top of AKS. This means that we need to write all the configuration files that are needed for running our application in a Kubernetes Cluster.</p>
 
-<h2>How the project look in high level?</h2>
-<a href="https://ibb.co/hy2D3hR"><img src="https://i.ibb.co/drkG810/141464435-f83b4376-b5f3-4359-91d8-e8542bba40bf.png" alt="141464435-f83b4376-b5f3-4359-91d8-e8542bba40bf" border="0" /></a>
+<img src="https://bootcamp.rhinops.io/images/kubernetes-resources.png" width="400" height="160" >
 
-<h2>VMs Requirements</h2>
-1)VMagent machine for CI process </br>
-2)3 VMS for each envoirment- on each VM we will connect to relevnt envoirment</br>
-<h2>Agent installtion requirements </h2>
+<p>Finally we will, update or CI/CD process to deploy our already dockerized application into the Kubernetes cluster.</p>
+<img src="https://bootcamp.rhinops.io/images/k8s-cicd.png"  width="600" height="600">
 
-<B>Install Docker:</B></br>
-sudo apt-get remove docker docker-engine docker.io </br>
-sudo apt-get update</br>
-sudo apt install docker.io -y </br>
-sudo snap install docker</br>
-docker --version</br>
-sudo docker run hello-world</br>
-sudo chmod 666 /var/run/docker.sock</br>
+<H2>how to make it work?</H2>
+<H3>Prerequisites </h3>
+1)Create two azure kuberntis serice (AKS) and azure container registry (ACR). </br></br>
+2)install nginx ingress with the following command:
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.2.1/deploy/static/provider/cloud/deploy.yaml </br></br>
+3)intallpostgres and create datebase using helm with the following command </br></br>
+helm repo add bitnami https://charts.bitnami.com/bitnami </br>
+helm install my-release bitnami/postgresql </br></br>
+4)Create two envoirments in azure devops and connect them to the relvent AKS, one for staging and one for produdtion.  </br>
+<H3>CI stage </H3>
+1) Create  docker container and push it the ACR. </br>
+2) Upload the manifests files to artifact.
 
-<B>Install Agent:</B></br>
-Azure devops -> Organization Settings -> Agent pool -> add pool -> New agent </br>
-<B>Connect to envoirment:</B></br>
-Azure devops -> Piplines - >Envoirnemts -> new -> add resorcue -> virtual machine - > choose relvent os -> copied to the VM
+<H3>CD stage </H3>
+1) Creating secrets with the credentials  that we stored in the library.</br>
+2) Deploy to kuberntis cluster on staging environment. </br>
+3) Deploy to kuberntis cluster on production environment. </br>
