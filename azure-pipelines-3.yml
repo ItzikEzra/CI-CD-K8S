@@ -5,16 +5,6 @@ trigger:
 resources:
 - repo: self
 
-#variables:
-
-  # Container registry service connection established during pipeline creation
- # dockerRegistryServiceConnection: '11f6b7af-68d3-459a-a8b5-6f2c41ae5360'
- # imageRepository: 'bootcampapp'
- # containerRegistry: 'bootcampapp2.azurecr.io'
- # dockerfilePath: '**/Dockerfile'
- # tag: '$(Build.BuildId)'
- # imagePullSecret: 'bootcampapp214567bc0-auth'
- 
 pool: default
 stages:
 - stage: CI
@@ -38,7 +28,7 @@ stages:
 
 - stage: Deploy
   condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/master'))
-  displayName: Deploy stage
+  displayName: Deploy to stageing
   dependsOn: CI
 
   jobs:
