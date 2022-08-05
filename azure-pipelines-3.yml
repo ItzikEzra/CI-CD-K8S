@@ -88,12 +88,12 @@ stages:
               containers: 'bootcampapp2/bootcampapp'
                 
 
-- stage: DeployProd
+- stage: Deploy_prod
   displayName: Deploy stage
   dependsOn: Build
 
   jobs:
-  - deployment: Deploy to production
+  - deployment: Deploy
     displayName: Deploy
     variables: 
     - group: 'prodcution'
