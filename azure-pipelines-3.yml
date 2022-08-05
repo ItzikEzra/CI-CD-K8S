@@ -89,8 +89,8 @@ stages:
                 
 
 - stage: Deploy_prod
-  displayName: Deploy stage
-  dependsOn: Build
+  displayName: Deploy to proudction
+  dependsOn: Deploy
 
   jobs:
   - deployment: Deploy
