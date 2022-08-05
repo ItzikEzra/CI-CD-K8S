@@ -12,13 +12,13 @@
 
 <H2>how to make it work?</H2>
 <H3>Prerequisites </h3>
-1)Create two azure kuberntis serice (AKS) and azure container registry (ACR). </br></br>
-2)install nginx ingress with the following command:
+1) Create two azure kuberntis serice (AKS) and azure container registry (ACR). </br></br>
+2) install nginx ingress with the following command:
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.2.1/deploy/static/provider/cloud/deploy.yaml </br></br>
-3)intallpostgres and create database using helm with the following command </br></br>
+3) intall postgres and create database using helm with the following command </br></br>
 helm repo add bitnami https://charts.bitnami.com/bitnami </br>
 helm install my-release bitnami/postgresql </br></br>
-4)Create two envoirments in azure devops and connect them to the relvent AKS, one for staging and one for production.  </br>
+4) Create two envoirments in azure devops and connect them to the relvent AKS, one for staging and one for production.  </br>
 <H3>CI stage </H3>
 1) Create  docker container and push it the ACR. </br>
 2) Upload the manifests files to artifact.
